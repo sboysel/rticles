@@ -43,7 +43,18 @@ skeleton/setspace.sty: aea_template/setspace.sty
 
 skeleton/references.bib:
 				mkdir -p $(dir $@)
-				touch $@
+				echo "@article{coman1911,\n \\
+ 					ISSN = "00028282",\n \\
+ 					URL = "http://www.jstor.org/stable/1802904",\n \\
+ 					author = "Katharine Coman",\n \\
+ 					journal = "The American Economic Review",\n \\
+ 					number = "1",\n \\
+ 					pages = "1--19",\n \\
+ 					publisher = "American Economic Association",\n \\
+ 					title = "Some Unsettled Problems of Irrigation",\n \\
+ 					volume = "1",\n \\
+				  year = "1911"\n \\
+				}" > $@
 
 /usr/local/bin/pdflatex:
 				ln -s /Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin/pdflatex /usr/local/bin

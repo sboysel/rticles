@@ -1,17 +1,14 @@
 ---
-title: "Untitled"
-short: "A shorter title"
-journal: "AER" # AER, AEJ, PP, JEL
+title: "Main Title"
+short-title: "A shorter title"
+journal: AER # Options: AER, AEJ, PP, JEL
+date: "`r Sys.Date()`"
 month: "`r format(Sys.Date(), '%m')`"
 year: "`r format(Sys.Date(), '%Y')`"
 vol: 1
 issue: 1
-jel:
-  - A10
-  - A11
-keywords:
-  - first keyword
-  - second keyword
+jel: ["A10", "A11"]
+keywords: ["first keyword", "second keyword"]
 author:
   - name: Alice Anonymous
     firstname: Alice
@@ -27,42 +24,34 @@ acknowledgements: |
   Acknowledgements
 abstract: |
   Abstract goes here
-output: rticles::aea_article
+# The mathtime package uses a Times font instead of Computer Modern
+# fontfamily: mathtime
+# fontfamilyoptions: cmbold
+output: 
+  rticles::aea_article:
+    latex_engine: xelatex
+    # Either the natbib package or the harvard package may be used with bibtex but not both
+    citation_package: natbib
+bibliography: references.bib
+biblio-style: aea
+graphics: true
 ---
 
 American Economic Review Pointers:
 
-\begin{itemize}
-\item Do not use an "Introduction" heading. Begin your introductory material
-before the first section heading.
+- Do not use an "Introduction" heading. Begin your introductory material before the first section heading.
+- Avoid style markup (except sparingly for emphasis).
+- Avoid using explicit vertical or horizontal space.
+- Captions are short and go below figures but above tables.
+- The tablenotes or figurenotes environments may be used below tables or figures, respectively, as demonstrated below.
+- If you have difficulties with the mathtime package, adjust the package options appropriately for your platform. If you can't get it to work, just remove the package or see our technical support document online (please refer to the author instructions).
+- At the moment, appendices after the references section is not supported by pandoc.  See https://github.com/jgm/pandoc/issues/771
+- Citations: Either the natbib package or the harvard package may be used with bibtex but not both.
+  1. Parenthetical: [@coman1911]
+  2. Inline: @coman1911
+- See also: [AER Style Guide for Accepted Articles](https://www-aeaweb-org/journals/aer/submissions/accepted-articles/styleguide)
 
-\item Avoid style markup (except sparingly for emphasis).
-
-\item Avoid using explicit vertical or horizontal space.
-
-\item Captions are short and go below figures but above tables.
-
-\item The tablenotes or figurenotes environments may be used below tables
-or figures, respectively, as demonstrated below.
-
-\item If you have difficulties with the mathtime package, adjust the package
-options appropriately for your platform. If you can't get it to work, just
-remove the package or see our technical support document online (please
-refer to the author instructions).
-
-\item If you are using an appendix, it goes last, after the bibliography.
-Use regular section headings to make the appendix headings.
-
-\item If you are not using an appendix, you may delete the appendix command
-and sample appendix section heading.
-
-\item Either the natbib package or the harvard package may be used with bibtex.
-To include one of these packages, uncomment the appropriate usepackage command
-above. Note: you can't use both packages at once or compile-time errors will result.
-
-\end{itemize}
-
-\section{First Section in Body}
+# First Section in Body
 
 Sample figure:
 
@@ -84,8 +73,8 @@ Sample table:
 \caption{Caption for table above.}
 
 \begin{tabular}{lll}
-& Heading 1 & Heading 2 \\
-Row 1 & 1 & 2 \\
+& Heading 1 & Heading 2 \\ 
+Row 1 & 1 & 2 \\ 
 Row 2 & 3 & 4%
 \end{tabular}
 \begin{tablenotes}
@@ -96,13 +85,5 @@ Table notes environment with optional leadin (Source, in this case).
 \end{tablenotes}
 \end{table}
 
-References here (manual or bibTeX). If you are using bibTeX, add your bib file
-name in place of BibFile in the bibliography command.
-% Remove or comment out the next two lines if you are not using bibtex.
-\bibliographystyle{aea}
-\bibliography{references}
-
-% The appendix command is issued once, prior to all appendices, if any.
-\appendix
-
-\section{Mathematical Appendix}
+\newpage
+# References
